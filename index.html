@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鉂わ笍 鑷存垜鏈€鐖辩殑浜?/title>
+<title>❤️ 致我最爱的人</title>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,7 +18,7 @@
 
   canvas#bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
 
-  /* 鈹€鈹€ 涓诲唴瀹瑰尯 鈹€鈹€ */
+  /* ── 主内容区 ── */
   .container {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -29,7 +29,7 @@
 
   .container > * { pointer-events: auto; }
 
-  /* 鈹€鈹€ 绾康鏃ュ€掕鏃?鈹€鈹€ */
+  /* ── 纪念日倒计时 ── */
   .countdown {
     position: fixed; top: 30px; left: 50%;
     transform: translateX(-50%);
@@ -59,7 +59,7 @@
     margin-top: 6px; letter-spacing: 2px;
   }
 
-  /* 鈹€鈹€ 涓绘爣棰?鈹€鈹€ */
+  /* ── 主标题 ── */
   .main-title {
     font-size: clamp(32px, 6vw, 60px);
     font-weight: 700;
@@ -79,7 +79,7 @@
     50% { filter: drop-shadow(0 0 40px rgba(255,107,157,0.6)); }
   }
 
-  /* 鈹€鈹€ 鎯呰瘽灞曠ず鍖?鈹€鈹€ */
+  /* ── 情话展示区 ── */
   .message-box {
     position: relative;
     max-width: 620px; width: 85vw;
@@ -102,7 +102,7 @@
     opacity: 0; transform: translateY(10px);
   }
 
-  /* 鈹€鈹€ 鎵撳瓧鍏夋爣 鈹€鈹€ */
+  /* ── 打字光标 ── */
   .cursor::after {
     content: '|';
     animation: blink 1s step-end infinite;
@@ -111,7 +111,7 @@
   }
   @keyframes blink { 50% { opacity: 0; } }
 
-  /* 鈹€鈹€ 鎸夐挳 鈹€鈹€ */
+  /* ── 按钮 ── */
   .btn-row {
     display: flex; gap: 16px; margin-top: 10px;
     flex-wrap: wrap; justify-content: center;
@@ -140,7 +140,7 @@
     padding: 8px 16px; z-index: 30;
   }
 
-  /* 鈹€鈹€ 鍝嶅簲寮?鈹€鈹€ */
+  /* ── 响应式 ── */
   @media (max-width: 480px) {
     .countdown { gap: 10px; top: 16px; }
     .countdown .unit { padding: 10px 14px; min-width: 60px; }
@@ -153,52 +153,52 @@
 </head>
 <body>
 <canvas id="bg"></canvas>
-<button class="btn music-btn" id="musicBtn" onclick="toggleMusic()">馃幍 闊充箰</button>
+<button class="btn music-btn" id="musicBtn" onclick="toggleMusic()">🎵 音乐</button>
 
 <div class="container">
   <div class="countdown" id="countdown">
-    <div class="unit"><div class="num" id="days">0</div><div class="label">澶?/div></div>
-    <div class="unit"><div class="num" id="hours">0</div><div class="label">鏃?/div></div>
-    <div class="unit"><div class="num" id="mins">0</div><div class="label">鍒?/div></div>
-    <div class="unit"><div class="num" id="secs">0</div><div class="label">绉?/div></div>
+    <div class="unit"><div class="num" id="days">0</div><div class="label">天</div></div>
+    <div class="unit"><div class="num" id="hours">0</div><div class="label">时</div></div>
+    <div class="unit"><div class="num" id="mins">0</div><div class="label">分</div></div>
+    <div class="unit"><div class="num" id="secs">0</div><div class="label">秒</div></div>
   </div>
 
-  <h1 class="main-title" id="mainTitle">鍚磋€佸笀锛屽仛鎴戣€佸﹩涔嬪悗鍐嶆敼绉板懠鍝堛€?/h1>
+  <h1 class="main-title" id="mainTitle">吴老师，做我老婆之后再改称呼哈。</h1>
 
   <div class="message-box">
     <div class="quotes cursor" id="quoteText"></div>
   </div>
 
   <div class="btn-row">
-    <button class="btn" onclick="nextQuote()">鉁?鎹竴鍙?/button>
-    <button class="btn" onclick="burstHearts()">馃挄 鐐规垜</button>
+    <button class="btn" onclick="nextQuote()">✨ 换一句</button>
+    <button class="btn" onclick="burstHearts()">💕 点我</button>
   </div>
 </div>
 
 <script>
-// ==================== 鏁版嵁閰嶇疆 ====================
+// ==================== 数据配置 ====================
 const LOVE_QUOTES = [
-  "鎯宠涓€鐩村湪涓€璧凤紝涓嶆槸鑷锛岃繖涔熸槸鎴戠殑蹇冩効銆?,
-  "涓嶈鎬€鐤戯紝涓嶈绾犵粨锛屾垜蹇冮噷瀵逛綘鏈夌潃鏃犻檺鐨勭儹鎯呫€?,
-  "璇存槑浣犳槸寰堣鐪熺殑锛屾槸鐨勶紝涓嶇煡閬撲负浠€涔堝浣犳垜涓€鐩撮兘寰堣鐪熴€?,
-  "浣犵殑鎬ф牸榄呭姏闈炲父鍚稿紩鎴戙€?,
-  "杩欎竴浜╀笁鍒嗗湴鍙兘鏄垜鐨勩€?,
-  "绛夌ǔ瀹氾紝浣犲氨鐭ラ亾浜嗭紝鎴戜篃涓嶆槸鍏虫敞浜嬫儏鐨勶紝鎴戞槸鍏虫敞鎯呯华鐨勩€?,
-  "澶╁ぉ鍋ヨ韩鍋ヨ韩鍋ヨ韩锛屽仴韬瘮鎴戦噸瑕佸悧锛熷綋鐒朵笉鏄暒锛屼綘涔熷緢閲嶈鐨勩€?,
-  "浣犳湁鏃堕棿绠″埆浜洪偅闂蹭簨锛屼笉濡傛潵绠＄鎴戯紝鎴戝氨杩欎箞涓嶅€煎緱浣犺姳蹇冩€濆悧锛?,
-  "鎬庝箞浼氬憿锛屾垜鑲畾浼氫负浣犺姳蹇冩€濈殑鍛€锛?,
-  "鎴戞湁鎯呯华鐨勶紝浣犱竴鐐归兘鎰熺煡涓嶅埌鍚楋紵鎴戣兘鎰熺煡鍒板晩",
-  "绗竴锛屼綘鐨勬劅鐭ュ姏寰堝樊锛岀浜岋紝鍗充究浣犳劅鐭ュ埌浜嗭紝浣犱篃缁欏睆钄戒簡銆備互鍚庝笉浼氬暒",
-  "铏界劧浣犳湁鏃跺€欏嚩宸村反鐨勭敓姘旓紝浣嗘槸鎴戣繕鏄効鎰忓惉浣犵户缁嚩宸村反銆傛垜璋㈣阿浣犲晩",
-  "浣犺鎴戠殑鎬ф牸搴曡壊鏄緢涓嶉敊鐨勶紝甯屾湜涓嶄細璁╀綘澶辨湜銆?,
-  "浣犺繖涓洖閬跨殑姣涚梾鑳戒笉鑳芥敼涓€鏀瑰晩锛屼笉瑕佽繖涔堝埆鎵暒銆傚綋鐒跺暒锛岃窡浣犲湪涓€璧锋椂闂翠箙浜嗭紝浠€涔堥兘鑳芥敼鎺夈€?,
-  "閮戒細瓒婃潵瓒婂ソ鐨勶紝鏈熷緟鏈変綘鐨勬湭鏉ャ€?,
+  "想要一直在一起，不是自私，这也是我的心愿。",
+  "不要怀疑，不要纠结，我心里对你有着无限的热情。",
+  "说明你是很认真的，是的，不知道为什么对你我一直都很认真。",
+  "你的性格魅力非常吸引我。",
+  "这一亩三分地只能是我的。",
+  "等稳定，你就知道了，我也不是关注事情的，我是关注情绪的。",
+  "天天健身健身健身，健身比我重要吗？当然不是啦，你也很重要的。",
+  "你有时间管别人那闲事，不如来管管我，我就这么不值得你花心思吗？",
+  "怎么会呢，我肯定会为你花心思的呀！",
+  "我有情绪的，你一点都感知不到吗？我能感知到啊",
+  "第一，你的感知力很差，第二，即便你感知到了，你也给屏蔽了。以后不会啦",
+  "虽然你有时候凶巴巴的生气，但是我还是愿意听你继续凶巴巴。我谢谢你啊",
+  "你说我的性格底色是很不错的，希望不会让你失望。",
+  "你这个回避的毛病能不能改一改啊，不要这么别扭啦。当然啦，跟你在一起时间久了，什么都能改掉。",
+  "都会越来越好的，期待有你的未来。",
 ];
 
-// 璁剧疆浣犱滑鍦ㄤ竴璧风殑鏃ユ湡 (淇敼杩欓噷!)
-const TOGETHER_DATE = new Date('2026-08-08'); // <-- 鏀规垚浣犱滑鐨勭邯蹇垫棩
+// 设置你们在一起的日期 (修改这里!)
+const TOGETHER_DATE = new Date('2026-08-08'); // <-- 改成你们的纪念日
 
-// ==================== Canvas 鏄熺┖鑳屾櫙 ====================
+// ==================== Canvas 星空背景 ====================
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 let W, H;
@@ -215,7 +215,7 @@ function resize() {
 }
 window.addEventListener('resize', resize);
 
-// 鏄熸槦
+// 星星
 function initStars() {
   stars = [];
   const count = Math.floor(W * H / 1200);
@@ -231,7 +231,7 @@ function initStars() {
   }
 }
 
-// 鐖卞績绮掑瓙
+// 爱心粒子
 function Heart(x, y) {
   this.x = x; this.y = y;
   this.vx = (Math.random() - 0.5) * 1.5;
@@ -266,7 +266,7 @@ Heart.prototype.draw = function(ctx) {
   ctx.restore();
 };
 
-// 娴佹槦
+// 流星
 function ShootingStar() {
   this.reset();
 }
@@ -309,14 +309,8 @@ function initShootingStars() {
   }
 }
 
-// 鑳屾櫙娓愬彉鑹?const bgColors = [
-  [10, 6, 30],  // 娣辩传榛?  [5, 3, 20],   // 鏇存殫
-];
-
-// ==================== 缁樺埗寰幆 ====================
-let bgT = 0;
+// ==================== 绘制循环 ====================
 function drawBg(t) {
-  bgT += 0.003;
   const c1 = [10 + Math.sin(t*0.3)*3, 6 + Math.sin(t*0.5)*2, 30 + Math.sin(t*0.4)*5];
   const c2 = [5 + Math.cos(t*0.4)*3, 3 + Math.cos(t*0.6)*2, 20 + Math.cos(t*0.5)*5];
   const grad = ctx.createRadialGradient(W*0.3, H*0.3, 0, W*0.5, H*0.5, Math.max(W,H)*0.7);
@@ -331,7 +325,7 @@ function render(timestamp) {
   ctx.clearRect(0, 0, W, H);
   drawBg(timestamp / 1000);
 
-  // 鏄熸槦
+  // 星星
   for (const s of stars) {
     s.twinkle += s.speed;
     s.opacity += (Math.sin(s.twinkle) * 0.01);
@@ -340,7 +334,8 @@ function render(timestamp) {
     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(255,255,255,${s.opacity})`;
     ctx.fill();
-    // 浜槦鍔犲厜鏅?    if (s.r > 1.3 && s.opacity > 0.7) {
+    // 亮星加光晕
+    if (s.r > 1.3 && s.opacity > 0.7) {
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(200,180,255,${s.opacity * 0.15})`;
@@ -348,12 +343,12 @@ function render(timestamp) {
     }
   }
 
-  // 娴佹槦
+  // 流星
   for (const ss of shootingStars) {
     ss.update(); ss.draw(ctx);
   }
 
-  // 鐖卞績绮掑瓙
+  // 爱心粒子
   hearts = hearts.filter(h => h.opacity > 0);
   for (const h of hearts) {
     h.update(); h.draw(ctx);
@@ -362,7 +357,7 @@ function render(timestamp) {
   requestAnimationFrame(render);
 }
 
-// ==================== 鐖卞績鐖嗙偢 ====================
+// ==================== 爱心爆炸 ====================
 function burstHearts(e) {
   let cx = W / 2, cy = H / 2;
   if (e && e.clientX) { cx = e.clientX; cy = e.clientY; }
@@ -376,12 +371,13 @@ function burstHearts(e) {
   }
 }
 
-// 鍗曞嚮绌虹櫧澶勪篃鐖嗙埍蹇?document.addEventListener('click', function(e) {
+// 单击空白处也爆爱心
+document.addEventListener('click', function(e) {
   if (e.target.tagName === 'BUTTON') return;
   burstHearts(e);
 });
 
-// ==================== 鎯呰瘽鎵撳瓧鏈?====================
+// ==================== 情话打字机 ====================
 let quoteIdx = 0;
 let typeTimer = null;
 const quoteEl = document.getElementById('quoteText');
@@ -415,13 +411,13 @@ function nextQuote() {
   typeQuote(LOVE_QUOTES[quoteIdx]);
 }
 
-// 闅忔満璧峰
+// 随机起始
 function initQuote() {
   quoteIdx = Math.floor(Math.random() * LOVE_QUOTES.length);
   typeQuote(LOVE_QUOTES[quoteIdx]);
 }
 
-// ==================== 鍊掕鏃?====================
+// ==================== 倒计时 ====================
 function updateCountdown() {
   const now = new Date();
   const diff = now - TOGETHER_DATE;
@@ -438,12 +434,12 @@ function updateCountdown() {
   document.getElementById('secs').textContent = String(s).padStart(2, '0');
 }
 
-// ==================== 鑳屾櫙闊充箰 ====================
+// ==================== 背景音乐 ====================
 let musicOn = false;
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function createMusic() {
-  // 绠€鍗曠殑闊充箰鍜屽０鐢熸垚
+  // 简单的音乐和声生成
   const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C major
   const chords = [
     [261.63, 329.63, 392.00], // C
@@ -463,7 +459,7 @@ function createMusic() {
 
   const melody = [0, 2, 4, 2, 0, 1, 3, 5, 4, 2, 0, 1, 3, 4, 5, 7, 5, 4, 2, 0];
 
-  // 鍜屽鸡閾哄簳
+  // 和弦铺底
   function playChord() {
     const chord = chords[chordIdx % chords.length];
     chord.forEach(freq => {
@@ -481,7 +477,7 @@ function createMusic() {
     chordIdx++;
   }
 
-  // 鏃嬪緥
+  // 旋律
   function playMelody() {
     if (!musicOn) return;
     const freq = notes[melody[noteIdx % melody.length]];
@@ -506,15 +502,15 @@ function createMusic() {
 function toggleMusic() {
   if (!musicOn) {
     musicOn = true;
-    document.getElementById('musicBtn').textContent = '馃攪 闈欓煶';
+    document.getElementById('musicBtn').textContent = '🔇 静音';
     if (audioCtx.state === 'suspended') audioCtx.resume();
   } else {
     musicOn = false;
-    document.getElementById('musicBtn').textContent = '馃幍 闊充箰';
+    document.getElementById('musicBtn').textContent = '🎵 音乐';
   }
 }
 
-// ==================== 鍚姩 ====================
+// ==================== 启动 ====================
 window.addEventListener('load', () => {
   resize();
   initQuote();
@@ -523,13 +519,14 @@ window.addEventListener('load', () => {
   createMusic();
   requestAnimationFrame(render);
 
-  // 鑷姩鎾斁闊充箰 (闇€瑕佷竴娆＄敤鎴蜂氦浜掑悗)
+  // 自动播放音乐 (需要一次用户交互后)
   document.addEventListener('click', function resumeAudio() {
     if (audioCtx.state === 'suspended') audioCtx.resume();
   }, { once: false });
 });
 
-// 绐楀彛澶у皬鍙樺寲鏃朵繚鎸佸疄鏃舵覆鏌?window.addEventListener('resize', resize);
+// 窗口大小变化时保持实时渲染
+window.addEventListener('resize', resize);
 </script>
 </body>
 </html>
